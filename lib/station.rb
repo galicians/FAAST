@@ -1,4 +1,4 @@
-require 'passenger_container'
+require_relative 'passenger_container'
 
 class Station
 
@@ -6,8 +6,8 @@ class Station
 
 	DEFAULT_CAPACITY = 200
 
-	def initialize
-		@capacity = DEFAULT_CAPACITY
+	def initialize(options = {})
+		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 		@passengers = []
 	end
 
