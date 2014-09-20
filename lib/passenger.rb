@@ -13,4 +13,6 @@ class Passenger
 	def destination
 		1
 	end
+
+	
 end
