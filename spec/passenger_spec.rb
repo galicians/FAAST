@@ -1,6 +1,7 @@
 require 'Passenger'
 
-describe 'passenger' do
+
+describe Passenger do
 
 	it "should be initialized with a origin" do
 		passenger = Passenger.new
@@ -11,5 +12,7 @@ describe 'passenger' do
 		passenger = Passenger.new
 		expect(passenger.destination).not_to eq(nil)
 	end
+
+
 
 end
