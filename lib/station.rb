@@ -9,12 +9,16 @@ class Station
 	end
 
 	def hold(passenger)
-		raise '#{self.class.to_s} does not accept more #{passenger.class.to_s}' if count == DEFAULT_CAPACITY
+		raise 'RuntimeError' if count == DEFAULT_CAPACITY
 		@passengers << passenger
 	end
 
 	def count
 		@passengers.size
+	end
+
+	def release
+		@passengers.pop
 	end
 
 

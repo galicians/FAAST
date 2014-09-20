@@ -13,10 +13,13 @@ describe Station do
 
 	it 'should have a finite capacity' do
 		200.times { station.hold(passenger) }
-		# expect(station.).to eq(true)
+		expect{ station.hold(passenger) }.to raise_error("RuntimeError")
+	end
 
-
-		
+	it 'should release passengers' do
+		50.times { station.hold(passenger) }
+		expect(station.release).to eq(passenger)
+		expect(station.count).to eq(49)
 	end
 
 end
