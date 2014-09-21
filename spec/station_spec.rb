@@ -14,6 +14,12 @@ describe Station do
 		expect(station1.count).to eq(1)
 	end
 
+	it 'should update the origin of the passenger when holds the passenger' do
+		station3 = Station.new
+		station3.hold(passenger)
+		expect(passenger.origin).to eq(station3)
+	end
+
 	it 'should have a finite capacity' do
 		200.times { station1.hold(passenger) }
 		expect{ station1.hold(passenger) }.to raise_error("RuntimeError")

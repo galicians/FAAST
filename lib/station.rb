@@ -11,10 +11,11 @@ class Station
 		@passengers = []
 	end
 
-	# def hold(passenger)
-	# 	raise 'RuntimeError' if count == DEFAULT_CAPACITY
-	# 	@passengers << passenger
-	# end
+	def hold(passenger)
+		raise 'RuntimeError' if count == DEFAULT_CAPACITY
+		passenger.origin = self
+		@passengers << passenger
+	end
 
 	# def count
 	# 	@passengers.size
