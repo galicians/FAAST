@@ -7,10 +7,12 @@ class Train
 	DEFAULT_CAPACITY = 10
 	
 	attr_accessor :coaches,:capacity
-
+	attr_reader :stations
+	
 	def initialize(options = {})
 		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 		@coaches = []
+		@stations = []
 	end
 	
 	# def full?
@@ -25,6 +27,13 @@ class Train
 	def count
 		@coaches.size
 	end
+
+	def route(*stations)
+		stations.each do |station|
+			@stations << station
+		end
+	end
+
 
 
 end

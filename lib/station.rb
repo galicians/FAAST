@@ -17,13 +17,5 @@ class Station
 		@passengers << passenger
 	end
 
-	# def count
-	# 	@passengers.size
-	# end
-
-	# def release
-	# 	@passengers.pop
-	# end
-
 
 end

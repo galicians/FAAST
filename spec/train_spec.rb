@@ -15,4 +15,12 @@ describe Train do
 		expect(train.coaches).to eq([coach])
 	end
 
+	it 'should accept a route' do
+		station1 = Station.new
+		station3 = Station.new
+		station5 = Station.new
+		train.route(station3,station5,station1)
+		expect(train.stations).to eq([station3,station5,station1])
+	end
+
 end
