@@ -4,10 +4,13 @@ require 'station'
 
 describe Station do
 	
-
+	let(:station0) { Station.new }
 	let(:station1) { Station.new }
 	let(:station2) { Station.new }
+	let(:station3) { Station.new }
 	let(:passenger) { Passenger.new(station1,station2) }
+	let(:train) { Train.new }
+	let(:coach) { Coach.new }
 
 	it 'should hold passengers' do
 		station1.hold(passenger)
@@ -21,15 +24,27 @@ describe Station do
 	end
 
 	it 'should have a finite capacity' do
-		200.times { station1.hold(passenger) }
-		expect{ station1.hold(passenger) }.to raise_error("RuntimeError")
+		200.times { station0.hold(passenger) }
+		expect{ station0.hold(passenger) }.to raise_error("RuntimeError")
 	end
 
 	it 'should release passengers' do
-		50.times { station1.hold(passenger) }
-		expect(station1.release).to eq(passenger)
-		expect(station1.count).to eq(49)
+		50.times { station0.hold(passenger) }
+		expect(station0.release).to eq(passenger)
+		expect(station0.count).to eq(49)
 	end
 
+	it 'should deliver passengers to the right train' do
+		train.hold(coach)
+		train.route(station1,station2,station3)
+		passenger2 = Passenger.new(station1,station2)
+		passenger3 = Passenger.new(station1,station3)
+		12.times { station1.hold(passenger2) }
+		13.times { station1.hold(passenger3) }
+		puts "number of passengers in station 1: #{station1.count}"
+		station1.deliver(train)
+		expect(station1.count).to eq(0)
+
+	end
 
 end

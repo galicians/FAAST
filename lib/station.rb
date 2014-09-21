@@ -17,5 +17,20 @@ class Station
 		@passengers << passenger
 	end
 
+	def deliver(train)
+		# coach_test = Coach.new
+		puts 'before going on passengers iterations:'
+		puts passengers
+		passengers.each do |passenger|
+			if train.stations.include?passenger.destination
+				train.coaches.first.hold(passenger)
+				# @passengers.delete(passenger)
+			end
+		end
+
+		puts 'at the end'
+		puts train.coaches.first.passengers
+
+	end
 
 end

@@ -8,7 +8,7 @@ class Train
 	
 	attr_accessor :coaches,:capacity
 	attr_reader :stations
-	
+
 	def initialize(options = {})
 		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 		@coaches = []
@@ -21,7 +21,7 @@ class Train
 
 	def hold(coach)
 		raise 'RuntimeError' if count == capacity
-		coaches << coach
+		@coaches << coach
 	end
 
 	def count
