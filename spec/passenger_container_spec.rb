@@ -10,8 +10,10 @@ class ContainerHolder; include PassengerContainer; end
 
 describe PassengerContainer do
 
+	let(:station1) { Station.new }
+	let(:station2) { Station.new }
+	let(:passenger) { Passenger.new(station1,station2) }
 	let(:holder) { ContainerHolder.new(:capacity => 200) }
-	let(:passenger) { Passenger.new }
 
 	it 'should hold passengers' do
 		holder.hold(passenger)

@@ -3,9 +3,9 @@ class Passenger
 	
 	attr_accessor :origin, :destination
 
-	def initialize
-		@origin = 0
-		@destination = 1
+	def initialize(origin,destination)
+		@origin = origin
+		@destination = destination
 	end
 	
 end
