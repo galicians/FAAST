@@ -3,6 +3,7 @@ require 'passenger_container'
 class Coach
 
 	include PassengerContainer
+	attr_accessor :passengers
 
 	DEFAULT_CAPACITY = 40
 
@@ -12,14 +13,12 @@ class Coach
 	end
 
 	def hold(passenger)
-		raise 'RuntimeError' if count == capacity
-		puts 'interaction in coach.hold: '
-		puts 'holding'
-		@passengers << passenger
+		# raise 'RuntimeError' if count == capacity
+		passengers << passenger
 	end
 
 	def count
-		@passengers.size
+		passengers.size
 	end
 
 

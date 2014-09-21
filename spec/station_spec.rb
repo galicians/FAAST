@@ -39,11 +39,17 @@ describe Station do
 		train.route(station1,station2,station3)
 		passenger2 = Passenger.new(station1,station2)
 		passenger3 = Passenger.new(station1,station3)
-		12.times { station1.hold(passenger2) }
-		13.times { station1.hold(passenger3) }
-		puts "number of passengers in station 1: #{station1.count}"
+		passenger4 = Passenger.new(station1,station3)
+		passenger5 = Passenger.new(station1,station2)
+		station1.hold(passenger2) 
+		station1.hold(passenger3)
+		station1.hold(passenger4)
+		station1.hold(passenger5)
+		# 12.times { station1.hold(passenger2) }
+		# 13.times { station1.hold(passenger3) }
 		station1.deliver(train)
 		expect(station1.count).to eq(0)
+		expect(trains.coaches.first).to eq([passenger2,passenger3])
 
 	end
 
