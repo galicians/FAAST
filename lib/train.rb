@@ -6,13 +6,14 @@ class Train
 	
 	DEFAULT_CAPACITY = 10
 	
-	attr_accessor :coaches,:capacity
+	attr_accessor :coaches,:capacity,:current_station
 	attr_reader :stations
 
 	def initialize(options = {})
 		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 		@coaches = []
 		@stations = []
+		@current_station = []
 	end
 	
 	# def full?
@@ -34,6 +35,29 @@ class Train
 		end
 	end
 
+	def board(passenger)
+		puts 'board'
+		puts empty_coach
+		# empty_coach.hold(passenger)
+		# puts 'after hold passenger'
+		# puts empty_coach.passengers
+		# puts 'end'
+	end
 
+	def empty_coach
+		@coaches.each do |coach|
+			return coach if !coach.full?
+		end
+	end
+
+	def deliver(station)
+		puts 'inside deliver:'
+		@coaches.each do |coach|
+			coach.passengers.each do |passenger|
+				puts passenger
+			end
+		end
+		puts 'outside deliver'
+	end
 
 end
