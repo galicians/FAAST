@@ -48,8 +48,10 @@ describe Station do
 		# 12.times { station1.hold(passenger2) }
 		# 13.times { station1.hold(passenger3) }
 		station1.deliver(train)
-		expect(station1.count).to eq(0)
-		expect(trains.coaches.first).to eq([passenger2,passenger3])
+		# expect(station1.count).to eq(4)
+		# expect(train.coaches.first).to eq([passenger2,passenger3])
+		puts "content of the coach:"
+		puts train.coaches.first.passengers
 
 	end
 

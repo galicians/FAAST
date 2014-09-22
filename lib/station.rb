@@ -18,12 +18,10 @@ class Station
 	end
 
 	def deliver(train)
-		puts passengers.size
 		passengers.each do |passenger|
 			if train.stations.include?passenger.destination
 				train.coaches.first.hold(passenger)
-				puts passengers
-				@passengers.delete(passenger)
+				# @passengers.delete(passenger)
 			end
 		end
 	end
