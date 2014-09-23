@@ -6,15 +6,14 @@ describe Train do
 	let(:coach) { Coach.new }
 	let(:station2) { Station.new }
 	let(:passenger) { Passenger.new(station2,station2) }
-	# it 'should be made of a number of coaches' do
-	# 	4.times { train.hold(coach) }
-	# 	expect(train.count).to eq(4)
-	# end
-
 
 	it 'should hold coaches' do
-		train.hold(coach)
-		expect(train.coaches).to eq([coach])
+		expect(train.count).to eq(0)
+		expect{ 21.times {train.hold(coach)} }.to raise_error("RuntimeError")
+	end
+
+	it 'should hold a limited number of coaches' do
+		expect(train.capacity).to eq (20)
 	end
 
 	it 'should accept a route' do
@@ -25,16 +24,16 @@ describe Train do
 		expect(train.stations).to eq([station3,station5,station1])
 	end
 
-	it 'it should be able to stop at a specific station' do
+	it 'should be able to stop at a specific station' do
 		train.current_station = station2
 		expect(train.current_station).to eq(station2)
 	end
 
-	# it 'should board passengers' do
-	# 	5.times {train.hold(Coach.new)}
-	# 	80.times { train.board(Passenger.new) }
-	# 	expect(train.coaches.first.count).to eq(40)
-	# end
+	it "should board passengers on the first coach available" do
+		3.times { train.hold(Coach.new) }
+		100.times { train.board(Passenger.new(station2,station2)) }
+		expect(train.coaches.last.count).to eq(20)
+	end
 
 	it 'should release a passenger when arrives at destination' do
 

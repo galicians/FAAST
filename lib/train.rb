@@ -32,17 +32,8 @@ class Train
 	end
 
 	def board(passenger)
-		puts 'board'
-		puts empty_coach
-		# empty_coach.hold(passenger)
-		# puts 'after hold passenger'
-		# puts empty_coach.passengers
-		# puts 'end'
-	end
-
-	def empty_coach
-		@coaches.each do |coach|
-			return coach if !coach.full?
+		coaches.each do |coach|
+			return coach.hold(passenger) if !coach.full?
 		end
 	end
 

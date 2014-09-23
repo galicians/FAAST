@@ -21,7 +21,7 @@ class Station
 		passengers_to_be_delivered = []
 		passengers.each do |passenger|
 			if train.stations.include?passenger.destination
-				train.coaches.first.hold(passenger)
+				train.board(passenger)
 				passengers_to_be_delivered << passenger
 			end
 		end
