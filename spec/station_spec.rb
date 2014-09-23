@@ -37,22 +37,14 @@ describe Station do
 	it 'should deliver passengers to the right train' do
 		train.hold(coach)
 		train.route(station1,station2,station3)
-		passenger2 = Passenger.new(station1,station2)
-		passenger3 = Passenger.new(station1,station3)
-		passenger4 = Passenger.new(station1,station3)
-		passenger5 = Passenger.new(station1,station2)
-		station1.hold(passenger2) 
-		station1.hold(passenger3)
-		station1.hold(passenger4)
-		station1.hold(passenger5)
-		# 12.times { station1.hold(passenger2) }
-		# 13.times { station1.hold(passenger3) }
+		5.times { station1.hold(Passenger.new(station1,station2)) }
+		12.times { station1.hold(Passenger.new(station1,station3)) }
+		puts "the number of passengers in the station is #{station1.passengers.count}"
 		station1.deliver(train)
-		# expect(station1.count).to eq(4)
-		# expect(train.coaches.first).to eq([passenger2,passenger3])
-		puts "content of the coach:"
+		puts "after delivering the number of passengers in the station is #{station1.passengers.count}"
+		puts "number of passengers in the coach: #{train.coaches.first.passengers.count}"
 		puts train.coaches.first.passengers
-
+		expect(station1.passengers.count).to eq 0
 	end
 
 end

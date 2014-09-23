@@ -31,14 +31,12 @@ describe Train do
 	end
 
 	# it 'should board passengers' do
-	# 	5.times {train.hold(coach)}
-	# 	80.times { train.board(passenger) }
+	# 	5.times {train.hold(Coach.new)}
+	# 	80.times { train.board(Passenger.new) }
 	# 	expect(train.coaches.first.count).to eq(40)
-	# 	# puts train.coaches[4].passengers
-	# 	# train.board(station2)
 	# end
 
-	it 'should release passengers when arrives at the station' do
+	it 'should release a passenger when arrives at destination' do
 
 	end
 

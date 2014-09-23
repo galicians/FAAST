@@ -15,10 +15,6 @@ class Train
 		@stations = []
 		@current_station = []
 	end
-	
-	# def full?
-	# 	count == capacity
-	# end
 
 	def hold(coach)
 		raise 'RuntimeError' if count == capacity

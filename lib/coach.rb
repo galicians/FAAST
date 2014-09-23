@@ -13,7 +13,7 @@ class Coach
 	end
 
 	def hold(passenger)
-		# raise 'RuntimeError' if count == capacity
+		raise 'RuntimeError' if count == capacity
 		@passengers << passenger
 	end
 
@@ -21,5 +21,7 @@ class Coach
 		@passengers.size
 	end
 
-
+	def full?
+		passengers.count == @capacity
+	end
 end
