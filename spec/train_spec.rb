@@ -4,7 +4,9 @@ describe Train do
 
 	let(:train) { Train.new(:capacity => 20) }
 	let(:coach) { Coach.new }
+	let(:station1) { Station.new }
 	let(:station2) { Station.new }
+	let(:station3) { Station.new }
 	let(:passenger) { Passenger.new(station2,station2) }
 
 	it 'should hold coaches' do
@@ -35,8 +37,13 @@ describe Train do
 		expect(train.coaches.last.count).to eq(20)
 	end
 
-	it 'should release a passenger when arrives at destination' do
-
+	it 'should release passengers when they arrive at destination' do
+		train.current_station = station2
+		3.times { train.hold(Coach.new) }
+		50.times { train.board(Passenger.new(station1,station2)) }
+		50.times { train.board(Passenger.new(station1,station3)) }
+		train.deliver(station2)
+		expect(station2.count).to eq(50)
 	end
 
 end

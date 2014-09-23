@@ -28,22 +28,13 @@ describe Station do
 		expect{ station0.hold(passenger) }.to raise_error("RuntimeError")
 	end
 
-	it 'should release passengers' do
-		50.times { station0.hold(passenger) }
-		expect(station0.release).to eq(passenger)
-		expect(station0.count).to eq(49)
-	end
 
 	it 'should deliver passengers to the right train' do
 		train.hold(coach)
 		train.route(station1,station2,station3)
 		5.times { station1.hold(Passenger.new(station1,station2)) }
 		12.times { station1.hold(Passenger.new(station1,station3)) }
-		puts "the number of passengers in the station is #{station1.passengers.count}"
 		station1.deliver(train)
-		puts "after delivering the number of passengers in the station is #{station1.passengers.count}"
-		puts "number of passengers in the coach: #{train.coaches.first.passengers.count}"
-		puts train.coaches.first.passengers
 		expect(station1.passengers.count).to eq 0
 	end
 

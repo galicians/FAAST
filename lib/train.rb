@@ -38,13 +38,17 @@ class Train
 	end
 
 	def deliver(station)
-		puts 'inside deliver:'
+		passengers_delivered = []
 		@coaches.each do |coach|
 			coach.passengers.each do |passenger|
-				puts passenger
+				if passenger.destination == current_station
+					station.hold(passenger)
+					passengers_delivered << passenger
+				end
 			end
+			coach.passengers = coach.passengers - passengers_delivered
 		end
-		puts 'outside deliver'
+
 	end
 
 end
