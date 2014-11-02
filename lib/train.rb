@@ -7,27 +7,27 @@ class Train
 	DEFAULT_CAPACITY = 10
 	
 	attr_accessor :coaches,:capacity,:current_station
-	attr_reader :stations
+	attr_reader :itinerary
 
 	def initialize(options = {})
 		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 		@coaches = []
-		@stations = []
-		@current_station = []
+		@itinerary = []
+		@current_station
 	end
 
 	def hold(coach)
-		raise 'RuntimeError' if count == capacity
+		raise 'RuntimeError' if number_coaches == capacity
 		@coaches << coach
 	end
 
-	def count
+	def number_coaches
 		@coaches.size
 	end
 
 	def route(*stations)
 		stations.each do |station|
-			@stations << station
+			@itinerary << station
 		end
 	end
 

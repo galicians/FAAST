@@ -20,7 +20,7 @@ class Station
 	def deliver(train)
 		passengers_to_be_delivered = []
 		passengers.each do |passenger|
-			if train.stations.include?passenger.destination
+			if train.itinerary.include?passenger.destination
 				train.board(passenger)
 				passengers_to_be_delivered << passenger
 			end

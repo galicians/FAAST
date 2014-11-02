@@ -9,8 +9,17 @@ describe Train do
 	let(:station3) { Station.new }
 	let(:passenger) { Passenger.new(station2,station2) }
 
+
+	it "should have a default capacity of 10 when initialized" do
+		expect(Train.new.capacity).to equal(10)
+	end
+
+	it "should not be at any station when initialized" do
+		expect(train.current_station).to be nil
+	end
+
 	it 'should hold coaches' do
-		expect(train.count).to eq(0)
+		expect(train.number_coaches).to eq(0)
 		expect{ 21.times {train.hold(coach)} }.to raise_error("RuntimeError")
 	end
 
@@ -19,11 +28,8 @@ describe Train do
 	end
 
 	it 'should accept a route' do
-		station1 = Station.new
-		station3 = Station.new
-		station5 = Station.new
-		train.route(station3,station5,station1)
-		expect(train.stations).to eq([station3,station5,station1])
+		train.route(station3,station2,station1)
+		expect(train.itinerary).to eq([station3,station2,station1])
 	end
 
 	it 'should be able to stop at a specific station' do
