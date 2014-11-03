@@ -1,8 +1,4 @@
-require 'passenger_container'
-
 class Train
-	
-	include PassengerContainer
 	
 	DEFAULT_CAPACITY = 10
 	
@@ -21,6 +17,10 @@ class Train
 		@coaches << coach
 	end
 
+	def number_passengers
+	 	@coaches.inject(0) {|result,coach| result + coach.passengers.size }
+	end
+
 	def number_coaches
 		@coaches.size
 	end
@@ -32,23 +32,19 @@ class Train
 	end
 
 	def board(passenger)
-		coaches.each do |coach|
+		@coaches.each do |coach|
 			return coach.hold(passenger) if !coach.full?
 		end
 	end
 
-	def deliver(station)
-		passengers_delivered = []
-		@coaches.each do |coach|
-			coach.passengers.each do |passenger|
-				if passenger.destination == current_station
-					station.hold(passenger)
-					passengers_delivered << passenger
-				end
-			end
-			coach.passengers = coach.passengers - passengers_delivered
-		end
+	def same_destination?(passenger)
+		passenger.destination == current_station
+	end
 
+	def deliver_passengers_station(station)
+		@coaches.each do |coach|
+			coach.passengers.delete_if {|passenger| station.hold(passenger) if same_destination?(passenger)}
+		end
 	end
 
 end

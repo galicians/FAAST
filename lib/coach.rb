@@ -1,9 +1,6 @@
-require 'passenger_container'
-
 class Coach
 
-	include PassengerContainer
-	attr_accessor :passengers
+	attr_accessor :passengers, :capacity
 
 	DEFAULT_CAPACITY = 40
 
@@ -13,7 +10,7 @@ class Coach
 	end
 
 	def hold(passenger)
-		raise 'RuntimeError' if count == capacity
+		raise 'RuntimeError' if full?
 		@passengers << passenger
 	end
 
@@ -22,6 +19,6 @@ class Coach
 	end
 
 	def full?
-		passengers.count == @capacity
+		@passengers.count == @capacity
 	end
 end
